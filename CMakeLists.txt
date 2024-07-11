@@ -15,3 +15,4 @@ add_executable(
         src/tensor.c
         src/main.c
 )
+target_link_libraries(ee m)

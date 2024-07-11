@@ -5,8 +5,6 @@
 #ifndef DATA_STRUCT_TOKEN_H
 #define DATA_STRUCT_TOKEN_H
 
-
-#define OP_TBL_SIZE 512
 enum _token_type {
     NIL = 0,
     UN_OP = 1,
@@ -29,8 +27,6 @@ struct _token {
     char lexeme[OP_LEX_MAXLEN];
 };
 typedef struct _token token_t;
-
-token_t op_token_tbl[OP_TBL_SIZE];
 
 void init_op_token_tbl();
 void set_token(token_t * dst, const char * lex, const int lex_len, const token_type_t token_type,

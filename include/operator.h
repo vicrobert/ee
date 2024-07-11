@@ -27,13 +27,18 @@ enum _op_code {
 };
 typedef enum _op_code op_code_t;
 
-#define FUNC_TBL_SIZE 100
 typedef token_t * (op_func_t)(token_t *, token_t *, token_t *);
 struct _func_tbl_entry {
     op_code_t op_code;
     op_func_t * op_func;
 };
 typedef struct _func_tbl_entry func_tbl_entry_t;
+
+#define FUNC_TBL_SIZE 100
+#define OP_TBL_SIZE 512
+
+extern func_tbl_entry_t op_func_tbl[FUNC_TBL_SIZE];
+extern token_t op_token_tbl[OP_TBL_SIZE];
 
 token_t * calc_add(token_t * dst, token_t * op1, token_t * op2);
 token_t * calc_minus(token_t * dst, token_t * op1, token_t * op2);

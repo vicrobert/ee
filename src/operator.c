@@ -6,7 +6,7 @@
 #include <string.h>
 #include <math.h>
 
-const func_tbl_entry_t op_func_tbl[FUNC_TBL_SIZE] = {
+func_tbl_entry_t op_func_tbl[FUNC_TBL_SIZE] = {
         {OP_NULL, NULL}, //PADDING
         {OP_ADD, calc_add},
         {OP_MINUS, calc_minus},
@@ -33,7 +33,8 @@ const func_tbl_entry_t op_func_tbl[FUNC_TBL_SIZE] = {
         {OP_FACTOR, calc_factor}
 };
 
-token_t op_token_tbl[OP_TBL_SIZE] = { 0 };
+
+token_t op_token_tbl[OP_TBL_SIZE] = {0};
 void init_op_token_tbl() {
     // op code
     op_token_tbl['+'].op_code = OP_ADD;

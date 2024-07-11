@@ -6,7 +6,7 @@
 #define DATA_STRUCT_EXPEVAL_H
 
 #include "token.h"
-#include "operator.h"
+//#include "operator.h"
 
 #define EXPR_LEN_MAX    1024
 
@@ -23,7 +23,7 @@ struct _token_stack {
 };
 typedef struct _token_stack token_stack_t;
 
-const func_tbl_entry_t op_func_tbl[FUNC_TBL_SIZE];
+//const func_tbl_entry_t op_func_tbl[FUNC_TBL_SIZE];
 
 //struct _parser_base {
 //
