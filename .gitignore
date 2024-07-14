@@ -6,3 +6,7 @@ cmake-build-release/
 
 ### VS Code ###
 .vscode/
+
+### build ###
+build/
+.obj
