@@ -74,10 +74,8 @@ int deal_options(int argc, void **args) {
                 reset();
                 strncpy(infix_expr, args[i], EXPR_LEN_MAX);
                 calc();
-                return 0;
             }
         }
-        show_usage();
         return 0;
     } else {
         show_usage();
