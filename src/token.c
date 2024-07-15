@@ -25,3 +25,25 @@ void set_token_value(token_t * dst, double value) {
     dst->value = value;
     sprintf(dst->lexeme, "%f", value);
 }
+
+void print_double_token(token_t * dst) {
+    if (dst->token_type != DIGIT)
+        return;
+
+    char *dec_point = strchr(dst->lexeme, '.');
+    if (dec_point == NULL) {
+        printf("%s\n", dst->lexeme);
+        return;
+    }
+
+    int dec_digits = strlen(dec_point + 1);
+    char *end = dst->lexeme + strlen(dst->lexeme) - 1;
+    while (end > dec_point && *end == '0') {
+        *end = '\0';
+        end--;
+    }
+    if (end == dec_point) {
+        *dec_point = '\0';
+    }
+    printf("%s\n", dst->lexeme);
+}

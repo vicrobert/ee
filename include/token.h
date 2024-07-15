@@ -32,6 +32,7 @@ void init_op_token_tbl();
 void set_token(token_t * dst, const char * lex, const int lex_len, const token_type_t token_type,
                const int code, const int prior);
 void set_token_value(token_t * dst, double value);
+void print_double_token(token_t * dst);
 token_t * map_op_token_tbl(char * lex);
 
 #endif //DATA_STRUCT_TOKEN_H

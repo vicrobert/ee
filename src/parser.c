@@ -249,7 +249,8 @@ void post_exp() {
 
 void result() {
     token_t * t = token_peekstack(&token_stack);
-    if (t != NULL) printf("%s\n", t->lexeme);
+    if (t != NULL)
+        print_double_token(t);
 }
 
 void calc() {
