@@ -7,10 +7,6 @@
 #include <stdio.h>
 #include <string.h>
 
-extern char infix_expr[EXPR_LEN_MAX];
-extern void reset();
-extern void calc();
-
 void test() {
     reset();
     strcpy(infix_expr, "-(((1+4)^2+5)-(9)^(-1/2))");
@@ -56,7 +52,7 @@ void exec_interact() {
     }
 }
 
-int deal_options(int argc, void **args) {
+int run_options(int argc, void **args) {
     if (argc == 1) {
         exec_interact();
     } else if (argc == 2) {
@@ -86,5 +82,5 @@ int deal_options(int argc, void **args) {
 int main(int argc, void **args) {
     init_op_token_tbl();
 
-    return deal_options(argc, args);    
+    return run_options(argc, args);    
 }

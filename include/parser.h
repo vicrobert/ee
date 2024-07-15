@@ -23,16 +23,8 @@ struct _token_stack {
 };
 typedef struct _token_stack token_stack_t;
 
-//const func_tbl_entry_t op_func_tbl[FUNC_TBL_SIZE];
-
-//struct _parser_base {
-//
-//};
-//typedef struct _parser_base parser_base_t;
-//
-//struct _parser {
-//
-//};
-//typedef struct _parser parser_t;
+extern char infix_expr[EXPR_LEN_MAX];
+void reset();
+void calc();
 
 #endif //DATA_STRUCT_EXPEVAL_H
