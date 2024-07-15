@@ -34,7 +34,7 @@ void show_banner() {
 }
 
 void show_usage() {
-    printf("Usage:\n\t-e \"<expression>\"\tExecute the expression presented.\n\t-v\t\t\tShow version.\n");
+    printf("Usage:\n\t-e '<expression>'\tExecute the expression presented.\n\t-v\t\t\tShow version.\n");
 }
 
 void exec_interact() {
