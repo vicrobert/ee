@@ -87,7 +87,7 @@ void init_op_token_tbl() {
     op_token_tbl[259].token_type = UN_OP;
     op_token_tbl[259].op_prior = 1;
     op_token_tbl[267].op_code = OP_LOG;
-    op_token_tbl[267].token_type = BIN_OP;
+    op_token_tbl[267].token_type = UN_OP;
     op_token_tbl[267].op_prior = 1;
     strncpy(op_token_tbl[256].lexeme, "sin", 3);
     strncpy(op_token_tbl[257].lexeme, "cos", 3);
