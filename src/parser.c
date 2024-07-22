@@ -55,15 +55,12 @@ int ee_parser_setexpr(const char * src) {
     }
     strcpy(expr.seq, src);
     expr.slen = len;
-
-    printf("%s\n", expr.seq);
-    printf("%d\n", expr.slen);
-    printf("%d\n", expr.pos);
     return 0;
 }
 
 void ee_parser_stdin() {
     fgets(expr.seq, expr.buflen, stdin);
+    expr.slen = strlen(expr.seq);
 }
 
 char * ee_parser_expr_seq() {
@@ -255,22 +252,17 @@ result_t * parse(int nest) {
 
 result_t * do_calc() {
     token_t * t;
-    memset(&token_stack, 0, sizeof(token_stack_t));
     while ((t = token_dequeue(&token_queue)) != NULL ) {
         if (t->token_type == DIGIT) {
             token_pushstack(&token_stack, t);
-            printf("%s\n", t->lexeme);
         } else if (t->token_type & OP) {
-            printf("%s\n", t->lexeme);
             op_func_t * op_func = op_func_tbl[t->op_code].op_func;
             if (op_func != NULL) {
                 if (t->token_type == BIN_OP) {
-                    printf("a\n");
                     token_t *right = token_popstack(&token_stack);
                     token_t *left = token_popstack(&token_stack);
                     token_pushstack(&token_stack, op_func(&cur_token, left, right));
                 } else if (t->token_type == UN_OP) {
-                    printf("b\n");
                     token_t *op = token_popstack(&token_stack);
                     token_pushstack(&token_stack, op_func(&cur_token, op, NULL));
                 }
@@ -283,18 +275,15 @@ result_t * do_calc() {
 }
 
 void post_exp() {
-   printf("PostExpression: ");
-   for (int i = token_queue.head; i < token_queue.tail; i ++) {
-       printf("[%s] ", token_queue.queue[i].lexeme);
-   }
-   printf("\n");
+//    printf("PostExpression: ");
+//    for (int i = token_queue.head; i < token_queue.tail; i ++) {
+//        printf("[%s] ", token_queue.queue[i].lexeme);
+//    }
+//    printf("\n");
 }
 
 void result() {
-printf("d\n");
     token_t * t = token_peekstack(&token_stack);
-printf("%s\n", t->lexeme);
-printf("%d\n", t->value);
     if (t != NULL)
         print_double_token(t);
 }
@@ -302,9 +291,7 @@ printf("%d\n", t->value);
 void calc() {
     if (parse(0)->code == 0) {
         post_exp();
-        printf("e\n");
         do_calc();
-        printf("f\n");
         result();
     }
 }
