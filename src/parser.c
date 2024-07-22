@@ -259,14 +259,18 @@ result_t * do_calc() {
     while ((t = token_dequeue(&token_queue)) != NULL ) {
         if (t->token_type == DIGIT) {
             token_pushstack(&token_stack, t);
+            printf("%s\n", t->lexeme);
         } else if (t->token_type & OP) {
+            printf("%s\n", t->lexeme);
             op_func_t * op_func = op_func_tbl[t->op_code].op_func;
             if (op_func != NULL) {
                 if (t->token_type == BIN_OP) {
+                    printf("a\n");
                     token_t *right = token_popstack(&token_stack);
                     token_t *left = token_popstack(&token_stack);
                     token_pushstack(&token_stack, op_func(&cur_token, left, right));
                 } else if (t->token_type == UN_OP) {
+                    printf("b\n");
                     token_t *op = token_popstack(&token_stack);
                     token_pushstack(&token_stack, op_func(&cur_token, op, NULL));
                 }
@@ -287,7 +291,10 @@ void post_exp() {
 }
 
 void result() {
+printf("d\n");
     token_t * t = token_peekstack(&token_stack);
+printf("%s\n", t->lexeme);
+printf("%d\n", t->value);
     if (t != NULL)
         print_double_token(t);
 }
@@ -295,7 +302,9 @@ void result() {
 void calc() {
     if (parse(0)->code == 0) {
         post_exp();
+        printf("e\n");
         do_calc();
+        printf("f\n");
         result();
     }
 }
