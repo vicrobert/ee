@@ -8,24 +8,24 @@
 #include <string.h>
 
 void test() {
-    reset();
-    strcpy(infix_expr, "-(((1+4)^2+5)-(9)^(-1/2))");
+    ee_parser_reset();
+    ee_parser_setexpr("-(((1+4)^2+5)-(9)^(-1/2))");
     calc();
 
-    reset();
-    strcpy(infix_expr, "(-1+3)/2-4.32-(-1)");
+    ee_parser_reset();
+    ee_parser_setexpr("(-1+3)/2-4.32-(-1)");
     calc();
 
-    reset();
-    strcpy(infix_expr, "5*((-2+5)+21/3+((8-(-2))*2.5))");
+    ee_parser_reset();
+    ee_parser_setexpr("5*((-2+5)+21/3+((8-(-2))*2.5))");
     calc();
 
-    reset();
-    strcpy(infix_expr, "0-(-1-2)+3*4");
+    ee_parser_reset();
+    ee_parser_setexpr("0-(-1-2)+3*4");
     calc();
 
-    reset();
-    strcpy(infix_expr, "-((3+2)*sin(3.141592654/2)+10+cos(3.141592654))");
+    ee_parser_reset();
+    ee_parser_setexpr("-((3+2)*sin(3.141592654/2)+10+cos(3.141592654))");
     calc();
 }
 
@@ -40,11 +40,11 @@ void show_usage() {
 void exec_interact() {
     show_banner();
     while (1) {
-        reset();
+        ee_parser_reset();
         printf(">>>");
-        fgets(infix_expr, EXPR_LEN_MAX, stdin);
-        if (!strcmp("quit\n", infix_expr)) break;
-        if (!strcmp("test\n", infix_expr)) {
+        ee_parser_stdin();
+        if (!strcmp("quit\n", ee_parser_expr_seq())) break;
+        if (!strcmp("test\n", ee_parser_expr_seq())) {
             test();
             continue;
         }
@@ -67,8 +67,8 @@ int run_options(int argc, void **args) {
         for (int i = 1; i < argc - 1; i ++) {
             if (!strcmp(args[i], "-e")) {
                 i ++;
-                reset();
-                strncpy(infix_expr, args[i], EXPR_LEN_MAX);
+                ee_parser_reset();
+                ee_parser_setexpr(args[i]);
                 calc();
             }
         }
@@ -81,6 +81,9 @@ int run_options(int argc, void **args) {
 
 int main(int argc, void **args) {
     init_op_token_tbl();
+    ee_init_parser();
 
-    return run_options(argc, args);    
+    int ret = run_options(argc, args);
+    ee_uninit_parser();
+    return ret;
 }

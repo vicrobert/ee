@@ -14,7 +14,6 @@ include_directories(include)
 
 add_executable(
         ee
-        include/list.h
         src/parser.c
         src/operator.c
         src/token.c
