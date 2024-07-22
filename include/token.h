@@ -25,6 +25,7 @@ struct _token {
     int op_prior;
     double value;
     char lexeme[OP_LEX_MAXLEN];
+    short lex_len;
 };
 typedef struct _token token_t;
 

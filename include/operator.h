@@ -22,8 +22,10 @@ enum _op_code {
     OP_TAN = 11,
     OP_CTAN = 12,
     /** 13-19 are reserved for extending **/
-    OP_LOG = 20,
-    OP_FACTOR = 21
+    OP_LN = 20,
+    OP_LOG2 = 21,
+    OP_LOG10 = 22,
+    OP_FACTOR = 23
 };
 typedef enum _op_code op_code_t;
 
@@ -51,7 +53,9 @@ token_t * calc_sin(token_t * dst, token_t * op1, token_t * op2);
 token_t * calc_cos(token_t * dst, token_t * op1, token_t * op2);
 token_t * calc_tan(token_t * dst, token_t * op1, token_t * op2);
 token_t * calc_ctan(token_t * dst, token_t * op1, token_t * op2);
-token_t * calc_log(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_ln(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_log2(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_log10(token_t * dst, token_t * op1, token_t * op2);
 token_t * calc_factor(token_t * dst, token_t * op1, token_t * op2);
 
 #endif //DATA_STRUCT_OPERATOR_H

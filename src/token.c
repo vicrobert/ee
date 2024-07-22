@@ -17,6 +17,7 @@ void set_token(token_t * dst, const char * lex, const int lex_len, const token_t
     if (token_type == DIGIT) {
         dst->value = strtod(dst->lexeme, NULL);
     }
+    dst->lex_len = strlen(dst->lexeme);
 }
 
 void set_token_value(token_t * dst, double value) {
@@ -24,6 +25,7 @@ void set_token_value(token_t * dst, double value) {
     dst->token_type = DIGIT;
     dst->value = value;
     sprintf(dst->lexeme, "%f", value);
+    dst->lex_len = strlen(dst->lexeme);
 }
 
 void print_double_token(token_t * dst) {
