@@ -25,7 +25,19 @@ enum _op_code {
     OP_LN = 20,
     OP_LOG2 = 21,
     OP_LOG10 = 22,
-    OP_FACTOR = 23
+    OP_FACTOR = 23,
+    OP_SINH = 24,
+    OP_COSH = 25,
+    OP_TANH = 26,
+    OP_ASIN = 27,
+    OP_ACOS = 28,
+    OP_ATAN = 29,
+    OP_EXP = 30,
+    OP_SQRT = 31,
+    OP_CEIL = 32,
+    OP_FLOOR = 33,
+    OP_FABS = 34,
+    OP_TGAMMA = 35
 };
 typedef enum _op_code op_code_t;
 
@@ -57,5 +69,17 @@ token_t * calc_ln(token_t * dst, token_t * op1, token_t * op2);
 token_t * calc_log2(token_t * dst, token_t * op1, token_t * op2);
 token_t * calc_log10(token_t * dst, token_t * op1, token_t * op2);
 token_t * calc_factor(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_sinh(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_cosh(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_tanh(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_asin(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_acos(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_atan(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_exp(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_sqrt(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_ceil(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_floor(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_fabs(token_t * dst, token_t * op1, token_t * op2);
+token_t * calc_tgamma(token_t * dst, token_t * op1, token_t * op2);
 
 #endif //DATA_STRUCT_OPERATOR_H
