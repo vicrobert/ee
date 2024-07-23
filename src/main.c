@@ -4,6 +4,7 @@
 #include "token.h"
 #include "result.h"
 #include "parser.h"
+#include "buffer.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -52,38 +53,48 @@ void exec_interact() {
     }
 }
 
-int run_options(int argc, void **args) {
+void calc_expr_batch() {
+    int size = ee_expr_strlist_size();
+    if (size > 0) {
+        for (int i = 0; i < size; i ++) {
+            ee_parser_reset();
+            ee_parser_setexpr(ee_expr_strlist_get(i));
+            calc();
+        }
+    }
+
+}
+
+void run_options(int argc, void **args) {
     if (argc == 1) {
         exec_interact();
     } else if (argc == 2) {
         if (!strcmp(args[1], "-v")) {
             show_banner();
-            return 0;
         } else if (!strcmp(args[1], "-h")) {
             show_usage();
-            return 0;
         }
     } else if (argc > 2) {
         for (int i = 1; i < argc - 1; i ++) {
             if (!strcmp(args[i], "-e")) {
                 i ++;
-                ee_parser_reset();
-                ee_parser_setexpr(args[i]);
-                calc();
+                ee_expr_strlist_push(args[i]);
             }
         }
-        return 0;
+        calc_expr_batch();
     } else {
         show_usage();
-        return 0;
     }
 }
 
 int main(int argc, void **args) {
     init_op_token_tbl();
-    ee_init_parser();
-
-    int ret = run_options(argc, args);
-    ee_uninit_parser();
-    return ret;
+    int init_ret = ee_init_parser();
+    if (!init_ret) {
+        run_options(argc, args);
+        ee_uninit_parser();
+        return 0;
+    } else {
+        return -1;
+    }
 }

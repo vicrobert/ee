@@ -29,7 +29,7 @@ int ee_init_parser() {
     token_queue.head = 0;
     token_queue.tail = 0;
     token_stack.top = 0;
-    return expr.seq && token_queue.queue && token_stack.stack;
+    return (expr.seq && token_queue.queue && token_stack.stack) ? 0 : -1;
 }
 
 void ee_uninit_parser() {
