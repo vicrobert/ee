@@ -9,6 +9,12 @@ $ cmake build ..
 $ make && make install
 ```
 
+### 运行
+```
+$ ee #交互式运行
+$ ee -e "1+1" #带表达式参数运行
+```
+
 ### 开发调试
 #### VSCode C++ 插件配置示例：
 ##### ./vscode/launch.json
